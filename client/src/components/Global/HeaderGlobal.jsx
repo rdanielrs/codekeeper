@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 
 
 const HeaderHomepage = () => {
-    const { id } = useParams();
+    //const { id } = useParams();
+    const [ id, setId ] = useState('');
     let navigate = useNavigate();
 
     const [ username, setUsername ] = useState('');
@@ -15,8 +16,11 @@ const HeaderHomepage = () => {
 
     useEffect(() => {
         let x = document.cookie.split(";")
+        console.log(x)
         if (x.length > 1) {
             let y = x[0].split("=")
+            let z = x[1].split("id=")
+            setId(z[1])
             setUserToken(y[1])
             setIsBusy(false)
             //console.log(y[1])

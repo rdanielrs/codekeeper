@@ -22,7 +22,8 @@ router.get("/user/:id", checkToken, async (req, res) => {
     //console.log("Teste")
 
     try {
-        const user = await User.findOne({ _id: id })
+        //const user = await User.findOne({ _id: id })
+        const user = await User.findById(id, '-password')
 
         if (!user) {
             res.status(422).json({ message: "Usuário não existente" })

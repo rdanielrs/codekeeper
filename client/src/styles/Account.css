@@ -1,0 +1,63 @@
+.container-account-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 10%;
+}
+
+.account-menu {
+    color: #2ba84a;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.account-menu-subheader {
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.account-menu-information {
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.user-info-text {
+    font-size: 18px;
+}
+
+
+
+.new-username-menu, .new-password-menu, .remove-account-menu {
+    color: #2ba84a;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5%;
+    width: 100%;
+}
+
+.new-credentials-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+/*.change-username-container, .change-password-container, .confirm-change-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}*/
+
+.change-credentials-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
