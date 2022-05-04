@@ -1,0 +1,122 @@
+.container-folder-menu {
+    padding: 10px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.folder-header {
+    display: flex;
+    align-items: center;
+    /*border-bottom: 1px solid #36d85e;*/
+    /*border-top-left-radius: 10px;
+    border-top-right-radius: 10px;*/
+}
+
+.folder-options {
+    padding-left: 25px;
+}
+
+.folder-menu {
+    width: 80%;
+}
+
+.folder-options-list {
+    list-style-type: none;
+}
+
+.folder-options-list li {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.folder-option {
+    background-color: #2ba84a;
+    border: none;
+    border-radius: 5px;
+    min-width: 120px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.folder-option:hover {
+    cursor: pointer;
+    background-color: #36d85e;
+}
+
+
+.file-list {
+    /*min-width: 1000px;*/
+    width: 100%;
+    /*height: 500px;*/
+    /*border: 1px solid #2ba84a;*/
+    /*padding: 10px;*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 1px solid #36d85e;
+    border-top: 1px solid #36d85e;
+}
+
+.no-file-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-file {
+    color: #36d85e;
+}
+
+.file {
+    color: #2ba84a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.file:hover {
+    cursor: pointer;
+    color: #36d85e;
+    /*background-color: #36d85e;
+    color: #161925;*/
+}
+
+.folder-file-title {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    justify-content: flex-start;
+    min-width: 200px;
+    /*margin-right: auto;*/
+}
+
+.index-number-folder {
+    margin-right: 15px;
+}
+
+
+
+.folder-file-title, .folder-file-description, .folder-file-date {
+    pointer-events: none;
+}
+
+/*.folder-file-description {
+    margin-right: auto;
+}*/
+
+.folder-file-description p {
+    font-size: 18px;
+}
+
+.folder-file-date {
+    font-size: 14px;
+}

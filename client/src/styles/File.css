@@ -1,0 +1,91 @@
+.container-main-component {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.container-file-menu {
+    width: 100%;
+    padding: 15px;
+}
+
+
+.file-menu-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    /*justify-content: flex-start;*/
+    flex-direction: column;
+}
+
+.file-menu-title {
+    padding-left: 10px;
+    color: #32c557;
+}
+
+.file-menu-title p {
+    margin-left: 10px;
+}
+
+/*.file-menu-title h3 {
+    color: #32c557;
+}*/
+
+.file-menu-button {
+    padding: 5px;
+    background-color: #2ba84a;
+    font-size: 16px;
+    min-width: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.file-menu-button:hover {
+    cursor: pointer;
+    background-color: #36d85e;
+}
+
+.container-file-code {
+    margin-top: 15px;
+}
+
+.file-code-field {
+    background-color: #32c55715;
+    width: 95%;
+    /*padding: 15px;*/
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 30px;
+    /*height: 600px;*/
+}
+
+/*.file-code-line {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 16px;
+}*/
+
+.file-code-line {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 30px;
+}
+
+.line-index, .line-code {
+    font-family: 'Source Code Pro', monospace;
+    color: #32c557;
+    white-space: pre;
+}
+
+.line-code {
+    width: 95%;
+}
+
+.line-index {
+    user-select: none;
+}

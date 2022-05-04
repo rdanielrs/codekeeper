@@ -1,0 +1,73 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Anek+Odia:wght@300&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Odia:wght@300&display=swap');
+
+
+
+body {
+    background-color: #161925;
+    overflow-x: hidden;
+    
+    /*background-color: #2D3142;*/    
+}
+
+.green-title {
+    /*color: #24913f;*/
+    color: #32c557;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container-header-homepage {
+    padding: 5px;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.header-homepage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #2ba84a;
+    border-bottom: 1px solid #2ba84a;
+}
+
+.title-container {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.title-container h1 {
+    font-family: 'Anek Odia', sans-serif;
+    height: 35px;
+}
+
+.header-buttons-container {
+    padding-right: 10px;
+}
+
+.header-buttons {
+    list-style-type: none;
+}
+
+.header-buttons li {
+    display: inline-block;
+    padding: 5px;
+}
+
+.header-button {
+    background-color: #2ba84a;
+    font-size: 16px;
+    width: 100px;
+    height: 30px;
+    border: 0;
+    border-radius: 10px;
+}
+
+.header-button:hover {
+    cursor: pointer;
+    background-color: #32c557;
+}

@@ -1,0 +1,135 @@
+.container-file-form {
+    display: flex;
+    width: 100%;
+    margin-top: 100px;
+    /*height: 100%;*/
+    position: absolute;
+    /*min-height: px;*/
+    flex-direction: column;
+    
+    /*position: absolute;
+    overflow: hidden;*/
+    /*margin-top: 50px;*/
+}
+
+.file-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*min-height: 800px;*/
+    max-height: 80%;
+    /*position: relative;
+    bottom: 10px;*/
+    flex-direction: column;
+    width: 100%;
+}
+
+.file-title-container {
+    /*text-align: center;*/
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.file-code-container {
+    width: 80%;
+}
+
+.file-buttons {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-button {
+    /*background-color: #32c557;*/
+    background-color: #2ba84a;
+    color: #161925;
+    font-size: 16px;
+    margin-right: 10px;
+    /*height: 30px;*/
+    padding: 5px;
+    min-width: 100px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+}
+
+
+.file-button:hover {
+    background-color: #32c557;
+    cursor: pointer;
+}
+
+.show-code-button-container {
+    margin-top: 15px;
+}
+
+.show-info-container {
+    margin-bottom: 15px;
+    margin-left: 15px;
+    /*height: 50px;*/
+    width: 200px;
+}
+
+.file-title {
+    width: 500px;
+    height: 25px;
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid #161925;
+    border-radius: 5px;
+}
+
+.file-description {
+    width: 500px;
+    height: 100px;
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid #161925;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.file-code {
+    width: 95%;
+    height: 25px;
+    font-size: 18px;
+    padding: 5px;
+    /*background-color: #202020;*/
+    font-family: 'Source Code Pro', monospace;
+    background-color: #32c55715;
+    color: #32c557;
+    border: 0;
+}
+
+.file-code:focus {
+    outline: none;
+    background-color: #32c55727;
+}
+
+.code-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    width: 100%;
+    
+    /*margin: 0;
+    padding: 0;*/
+}
+
+.code-container h3 {
+    color: #32c557;
+    margin-right: 15px;
+    font-family: 'Source Code Pro', monospace;
+}
+

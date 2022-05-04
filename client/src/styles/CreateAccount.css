@@ -1,0 +1,52 @@
+.register-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2ba84a;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 5%;
+}
+
+.register-header {
+    text-align: center;
+}
+
+.register-username, .register-password, .confirm-password {
+    text-align: center;
+    padding: 10px;
+}
+
+.register-button-container, .have-account-container {
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-button {
+    background-color: #2ba84a;
+    border: 0;
+    border-radius: 10px;
+    color: #0A0903;
+    width: 100px;
+    height: 30px;
+    font-size: 18px;
+}
+
+.register-button:hover {
+    background-color: #24913f;
+    cursor: pointer;
+}
+
+.have-account {
+    background-color: #161925;
+    color: #2ba84a;
+    border: 0;
+    font-size: 18px;
+}
+
+.have-account:hover {
+    color: #24913f;
+    cursor: pointer;
+}
