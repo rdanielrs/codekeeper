@@ -135,7 +135,7 @@ function checkToken(req, res, next) {
 
 //conta
 
-router.put("/user/username/:id", checkToken, async (req, res) => {
+router.put("/user/username/:id", async (req, res) => {
     const id = req.params.id;
     const { newUsername, password } = req.body;
     
@@ -164,6 +164,8 @@ router.put("/user/username/:id", checkToken, async (req, res) => {
 
             await User.updateOne({ _id: id }, user)
 
+            res.status(200).json({ message: "Nome de usuário alterado com sucesso" })
+
 
         } catch (error) {
             res.status(500).json({ error: error })
@@ -176,29 +178,36 @@ router.put("/user/username/:id", checkToken, async (req, res) => {
     }
 })
 
-router.put("/user/password/:id", checkToken, async (req, res) => {
+router.put("/user/password/:id", async (req, res) => {
     const id = req.params.id;
-    const { newPassword, password } = req.body;
+    const { password, newPassword } = req.body;
     const user = await User.findOne({ _id: id })
 
     if (!user) {
         res.status(422).json({ message: "Usuário não existente" })
+    }
+    
+    if (!password) {
+        return res.status(422).json({ msg: "A senha é obrigatória." })
     }
 
     if (!newPassword) {
         return res.status(422).json({ msg: "A nova senha é obrigatória." })
     }
 
-    if (!password) {
-        return res.status(422).json({ msg: "A senha é obrigatória." })
-    }
 
     try {
 
         try {
             if (await bcrypt.compare(password, user.password)) {
                 const hashedPassword = await bcrypt.hash(newPassword, 10)
+                
                 user.password = hashedPassword;
+
+                await User.updateOne({ _id: id }, user)
+
+                res.status(200).json({ message: "Senha alterada com sucesso" })
+
             } else {
                 res.status(400).json({ message: "Senha incorreta" })
             }
@@ -215,7 +224,7 @@ router.put("/user/password/:id", checkToken, async (req, res) => {
     }
 })
 
-router.delete("/user/delete/:id", checkToken, async (req, res) => {
+router.delete("/user/delete/:id", async (req, res) => {
     const id = req.params.id;
     const password = req.body;
 
@@ -230,9 +239,12 @@ router.delete("/user/delete/:id", checkToken, async (req, res) => {
     }
     
     try {
+
         try {
             if (await bcrypt.compare(password, user.password)) {
                 await User.deleteOne({ _id: id })
+
+                res.status(200).json({ message: "Usuário deletado com sucesso" })
                  
             } else {
                 res.status(400).json({ message: "Senha incorreta" })

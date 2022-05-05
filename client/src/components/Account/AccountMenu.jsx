@@ -1,19 +1,38 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 
 const AccountMenu = () => {
+    let navigate = useNavigate();
     const { id } = useParams();
     const [ userToken, setUserToken ] = useState('');
     const [ user, setUser ] = useState({ username: '', user_folders: [] });
+
+    const [ username, setUsername ] = useState('')
+    const [ password, setPassword ] = useState('');
+
+    const [ currentPassword, setCurrentPassword ] = useState('');
+    const [ newPassword, setNewPassword ] = useState('');
+
+    const [ removePassword, setRemovePassword ] = useState('');
     
-    const [ accountMenuState, setAccountMenuState ] = useState('none');
+    const [ accountMenuState, setAccountMenuState ] = useState('flex');
 
     const [ newNameState, setNewNameState ] = useState('none');
 
     const [ newPasswordState, setNewPasswordState ] = useState('none');
 
-    const [ removeAccountState, setRemoveAccountState ] = useState('flex')
+    const [ removeAccountState, setRemoveAccountState ] = useState('none')
+
+
+    const [ confirmUsernameDisplay, setConfirmUsernameDisplay ] = useState('block');
+    const [ changeUsernameDisplay, setChangeUsernameDisplay ] = useState('none');
+
+    const [ confirmPasswordDisplay, setConfirmPasswordDisplay ] = useState('block');
+    const [ changePasswordDisplay, setChangePasswordDisplay ] = useState('none');
+    
+    const [ confirmRemoveDisplay, setConfirmRemoveDisplay ] = useState('block');
+    const [ removeDisplay, setRemoveDisplay ] = useState('none')
 
     const [ isBusy, setIsBusy ] = useState(true);
 
@@ -23,8 +42,10 @@ const AccountMenu = () => {
             let y = x[0].split("=");
             setUserToken(y[1])
             setIsBusy(false);
+        } else {
+            navigate("/")
         }
-    }, [])
+    }, [navigate])
 
     useEffect(() => {
         if (isBusy === false) {
@@ -42,9 +63,8 @@ const AccountMenu = () => {
 
     const showUser = () => {
         console.log(user.user_folders.length)
+        console.log(userToken)
     }
-
-    
 
     const showAccountMenu = () => {
         setAccountMenuState('flex');
@@ -74,6 +94,123 @@ const AccountMenu = () => {
         setRemoveAccountState('flex');
     }
 
+    const confirmUsername = () => {
+        setConfirmUsernameDisplay('none');
+        setChangeUsernameDisplay('block');
+    }
+
+    const changeUsername = () => {
+        /*setConfirmUsernameDisplay('block');
+        setChangeUsernameDisplay('none');*/
+
+        api.put(`/users/user/username/${id}`, {
+            newUsername: username,
+            password: password
+        }).then((response) => {
+            if (response.status === 200) {
+                setUser({ username: username, user_folders: user.user_folders });
+                //console.log("Nome alterado com sucesso")
+                //setUsername('');
+                //setPassword('');
+                document.location.reload()
+                //showAccountMenu();
+            }
+        })
+
+    }
+
+    const nextInputUsername = (event) => {
+        if (event.key === 'Enter') {
+
+            switch(event.target.id) {
+                default:
+                    break;
+                case 'username':
+                    document.getElementById('password').focus();
+                    break;
+                case 'password':
+                    if (confirmUsernameDisplay === 'block') {
+                        //setConfirmUsernameDisplay('none')
+                        //setChangeUsernameDisplay('block')
+                        confirmUsername()
+                    }
+    
+                    if (changeUsernameDisplay === 'block') {
+                        changeUsername()
+                    }
+                    break;
+                    //document.getElementById('confirmUsername').focus();
+            }
+        }
+    }
+
+    const nextInputPassword = (event) => {
+        if (event.key === 'Enter') {
+            switch(event.target.id) {
+                default:
+                    break;
+                case 'current-password':
+                    document.getElementById('new-password').focus();
+                    break;
+                case 'new-password':
+                    if (confirmPasswordDisplay === 'block') {
+                        //setConfirmPasswordDisplay('none')
+                        //setChangePasswordDisplay('block')
+                        confirmPassword()
+                    }
+
+                    if (changePasswordDisplay === 'block') {
+                        changePassword()
+                    }
+            }
+        }
+    }
+
+    const confirmPassword = () => {
+        setConfirmPasswordDisplay('none');
+        setChangePasswordDisplay('block');
+    }
+
+    const changePassword = () => {
+        /*setConfirmPasswordDisplay('block');
+        setChangePasswordDisplay('none');*/
+
+        api.put(`/users/user/password/${ id }`, {
+            password: currentPassword,
+            newPassword: newPassword
+        }).then((response) => {
+            if (response.status === 200) {
+                //console.log("Senha alterada com sucesso")
+                document.location.reload();
+            }
+        })
+    }
+
+    const nextInputDelete = (event) => {
+        if (event.key === 'Enter' && confirmRemoveDisplay === 'block') {
+            confirmDeleteAccount()
+        }
+
+        if (event.key === 'Enter' && removeDisplay === 'block') {
+            handleDeleteAccount()
+        }
+    }
+
+    const confirmDeleteAccount = () => {
+        setConfirmRemoveDisplay('none');
+        setRemoveDisplay('block');
+    }
+
+    const handleDeleteAccount = () => {
+        api.delete(`/users/user/delete/${id}`, {
+            password: removePassword
+        }).then((response) => {
+            if (response.status === 200) {
+                navigate("/")
+            }
+        })
+    }
+ 
     return(
         <>
             <div className="container-account-menu">
@@ -103,15 +240,16 @@ const AccountMenu = () => {
                     <div className="new-credentials-form">
 
                         <div className="change-credentials-container">
-                            <input className='credential-input' type="text" placeholder="Novo nome" />
+                            <input onKeyDown={(e) => nextInputUsername(e)} id='username' value={username} onChange={(e) => setUsername(e.target.value)} className='credential-input' type="text" placeholder="Novo nome" />
                         </div>
 
                         <div className="change-credentials-container">
-                            <input className='credential-input' type="password" placeholder='Senha' />
+                            <input onKeyDown={(e) => nextInputUsername(e)} id='password' value={password} onChange={(e) => setPassword(e.target.value)} className='credential-input' type="password" placeholder='Senha' />
                         </div>
 
                         <div className="change-credentials-container">
-                            <button className="global-button">Salvar</button>
+                            <button style={{ display: confirmUsernameDisplay }} onClick={confirmUsername} className="global-button">Salvar</button>
+                            <button style={{ display: changeUsernameDisplay }} onClick={changeUsername} className="global-button">Tem certeza?</button>
                             <button onClick={showAccountMenu} className="global-button">Cancelar</button>
                         </div>
 
@@ -126,15 +264,16 @@ const AccountMenu = () => {
 
                     <div className="new-credentials-form">
                         <div className="change-credentials-container">
-                            <input className='credential-input' type="password" placeholder="Senha atual"/>
+                            <input onKeyDown={(e) => nextInputPassword(e)} value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} id='current-password' className='credential-input' type="password" placeholder="Senha atual"/>
                         </div>
 
                         <div className="change-credentials-container">
-                            <input className='credential-input' type="password" placeholder="Nova senha"/>
+                            <input onKeyDown={(e) => nextInputPassword(e)} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} id='new-password' className='credential-input' type="password" placeholder="Nova senha"/>
                         </div>
 
                         <div className="change-credentials-container">
-                            <button className="global-button">Salvar</button>
+                            <button onClick={confirmPassword} style={{ display: confirmPasswordDisplay }} className="global-button">Salvar</button>
+                            <button onClick={changePassword} style={{ display: changePasswordDisplay }} className="global-button">Tem certeza?</button>
                             <button onClick={showAccountMenu} className="global-button">Cancelar</button>
                         </div>
 
@@ -147,11 +286,12 @@ const AccountMenu = () => {
                     </div>
 
                     <div className="change-credentials-container">
-                        <input type="password" placeholder='Insira sua senha' className="credential-input" />
+                        <input onKeyDown={(e) => nextInputDelete(e)} value={removePassword} onChange={(e) => setRemovePassword(e.target.value)} id='remove-password' type="password" placeholder='Insira sua senha' className="credential-input" />
                     </div>
 
                     <div className="change-credentials-container">
-                            <button className="global-button">Salvar</button>
+                            <button style={{ display: confirmRemoveDisplay }} onClick={confirmDeleteAccount} className="global-button">Remover</button>
+                            <button style={{ display: removeDisplay }} onClick={handleDeleteAccount} className="global-button">Tem certeza?</button>
                             <button onClick={showAccountMenu} className="global-button">Cancelar</button>
                         </div>
                 </div>
