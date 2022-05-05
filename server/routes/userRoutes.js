@@ -133,8 +133,119 @@ function checkToken(req, res, next) {
     }
 }
 
-//pastas
+//conta
 
+router.put("/user/username/:id", checkToken, async (req, res) => {
+    const id = req.params.id;
+    const { newUsername, password } = req.body;
+    
+    const user = await User.findOne({ _id: id })
+    
+    if (!user) {
+        res.status(422).json({ message: "Usuário não existente" })
+    }
+
+    if (!newUsername) {
+        return res.status(422).json({ msg: "O nome de usuário é obrigatório." })
+    }
+
+    if (!password) {
+        return res.status(422).json({ msg: "A senha é obrigatória." })
+    }
+
+    try {
+        try {
+            if (await bcrypt.compare(password, user.password)) {
+                user.username = newUsername;
+
+            } else {
+                res.status(400).json({ message: "Senha incorreta" })
+            }
+
+            await User.updateOne({ _id: id }, user)
+
+
+        } catch (error) {
+            res.status(500).json({ error: error })
+            console.log("Erro no /user/username/:id ao comparar senha criptografada")
+        }
+
+    } catch(error) {
+        res.status(500).json({ error: error })
+        console.log("Erro no /user/username/:id")
+    }
+})
+
+router.put("/user/password/:id", checkToken, async (req, res) => {
+    const id = req.params.id;
+    const { newPassword, password } = req.body;
+    const user = await User.findOne({ _id: id })
+
+    if (!user) {
+        res.status(422).json({ message: "Usuário não existente" })
+    }
+
+    if (!newPassword) {
+        return res.status(422).json({ msg: "A nova senha é obrigatória." })
+    }
+
+    if (!password) {
+        return res.status(422).json({ msg: "A senha é obrigatória." })
+    }
+
+    try {
+
+        try {
+            if (await bcrypt.compare(password, user.password)) {
+                const hashedPassword = await bcrypt.hash(newPassword, 10)
+                user.password = hashedPassword;
+            } else {
+                res.status(400).json({ message: "Senha incorreta" })
+            }
+
+
+        } catch(error) {
+            res.status(500).json({ error: error })
+            console.log("Erro no /user/password/:id ao comparar senha criptografada")
+        }
+
+    } catch(error) {
+        console.log("Erro no /user/password/:id")
+        res.status(500).json({ error: error })
+    }
+})
+
+router.delete("/user/delete/:id", checkToken, async (req, res) => {
+    const id = req.params.id;
+    const password = req.body;
+
+    const user = await User.findOne({ _id: id });
+
+    if (!user) {
+        res.status(422).json({ message: "Usuário não existente" })
+    }
+
+    if (!password) {
+        return res.status(422).json({ msg: "A senha é obrigatória." })
+    }
+    
+    try {
+        try {
+            if (await bcrypt.compare(password, user.password)) {
+                await User.deleteOne({ _id: id })
+                 
+            } else {
+                res.status(400).json({ message: "Senha incorreta" })
+            }
+
+        } catch (error) {
+
+        }
+    } catch (error) {
+        res.status(500).json({ error: error })
+        console.log("Erro no /user/delete/:id")
+    }
+})
 
 
 module.exports = router
