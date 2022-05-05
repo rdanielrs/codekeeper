@@ -166,6 +166,16 @@ const AccountMenu = () => {
         }
     }
 
+    const nextInputDelete = (event) => {
+        if (event.key === 'Enter' && confirmRemoveDisplay === 'block') {
+            confirmDeleteAccount()
+        }
+
+        if (event.key === 'Enter' && removeDisplay === 'block') {
+            handleDeleteAccount()
+        }
+    }
+
     const confirmPassword = () => {
         setConfirmPasswordDisplay('none');
         setChangePasswordDisplay('block');
@@ -186,7 +196,7 @@ const AccountMenu = () => {
         })
     }
 
-    const nextInputDelete = (event) => {
+    /*const nextInputDelete = (event) => {
         if (event.key === 'Enter' && confirmRemoveDisplay === 'block') {
             confirmDeleteAccount()
         }
@@ -194,7 +204,7 @@ const AccountMenu = () => {
         if (event.key === 'Enter' && removeDisplay === 'block') {
             handleDeleteAccount()
         }
-    }
+    }*/
 
     const confirmDeleteAccount = () => {
         setConfirmRemoveDisplay('none');
