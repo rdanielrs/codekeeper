@@ -96,3 +96,11 @@ body {
     border: none;
     font-size: 16px;
 }
+
+.mobile-button {
+    background-color: #161925;
+    color: #32c557;
+    font-size: 22px;
+    border: 0;
+    display: none;
+}

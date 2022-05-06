@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/CreateAccount.css'
+import '../styles/Mobile/CreateAccount.css'
 
 import Register from '../components/CreateAccount/Register'
 import HeaderIndex from '../components/Index/HeaderIndex';

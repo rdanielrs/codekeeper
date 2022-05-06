@@ -9,9 +9,15 @@ const Homepage = () => {
     //const { id } = useParams();
 
     return(
-        <>
-            <HeaderGlobal/>
-            <UserMenu/>
+        <>  
+            <div className="container-header-global">
+                <HeaderGlobal/>
+
+            </div>
+            <div className="container-component">
+                <UserMenu/>
+
+            </div>
         
         </>
     )

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 
+import '../../styles/Mobile/Homepage.css';
+
 import api from '../../services/api';
 
 const UserMenu = () => {
@@ -31,7 +33,7 @@ const UserMenu = () => {
 
     useEffect(() => {
         let x = document.cookie.split(";")
-        console.log(x.length)
+        //console.log(x.length)
         if (x.length === 1) {
             //console.log("Teste")
             navigate('/');
@@ -80,14 +82,14 @@ const UserMenu = () => {
         navigate(`/folder/${id}/${event.target.id}`)
     }
 
-    const showFolder = () => {
+    /*const showFolder = () => {
         //console.log(folder)
         //console.log(userFolders[0].folder_title)
 
         api.get(`/folders/user/${id}`).then((response) => {
             console.log(response.data)
         })
-    }
+    }*/
 
     const showOverlay = () => {
         setOverlayState('flex');
@@ -124,7 +126,7 @@ const UserMenu = () => {
                 setRemoveState('block')
 
                 api.get(`/filter/${id}/sort/a-z`).then((response) => {
-                    console.log(response.data.sorted)
+                    //console.log(response.data.sorted)
                     setUserFolders(response.data.sorted);
                 })
 
@@ -143,7 +145,7 @@ const UserMenu = () => {
                 setRemoveState('block')
 
                 api.get(`/filter/${id}/sort/z-a`).then((response) => {
-                    console.log(response.data.sorted)
+                    //console.log(response.data.sorted)
                     setUserFolders(response.data.sorted);
                 })
 
@@ -179,7 +181,7 @@ const UserMenu = () => {
                 setRemoveState('block')
 
                 api.get(`/filter/${id}/sort/old`).then((response) => {
-                    console.log(response.data.sorted)
+                    //console.log(response.data.sorted)
                     setUserFolders(response.data.sorted);
                 })
                 break;
@@ -197,7 +199,7 @@ const UserMenu = () => {
                 setRemoveState('block')
 
                 api.get(`/filter/${id}/sort/biggest`).then((response) => {
-                    console.log(response.data.sorted)
+                    //console.log(response.data.sorted)
                     setUserFolders(response.data.sorted);
                 })
 
@@ -215,7 +217,7 @@ const UserMenu = () => {
                 setRemoveState('block')
 
                 api.get(`/filter/${id}/sort/smallest`).then((response) => {
-                    console.log(response.data.sorted)
+                    //console.log(response.data.sorted)
                     setUserFolders(response.data.sorted);
                 })
 
@@ -248,13 +250,13 @@ const UserMenu = () => {
             <div className="container-user-menu">
                <div className="user-menu">
                     <div className="user-menu-header">
-                        <h2 onClick={showFolder} className="green-title">Seus arquivos</h2>
+                        <h2 className="green-title">Seus arquivos</h2>
                     </div>
 
                     <div className="user-menu-subheader">
 
                         <div className="add-button-container">
-                            <button onClick={showOverlay} id='add-button' className="user-menu-option">Adicionar pasta</button>
+                            <button onClick={showOverlay} id='add-button' className="add-button">Adicionar pasta</button>
                         </div>
 
                         <div className="container-menu-options">
@@ -269,6 +271,15 @@ const UserMenu = () => {
                                 <li><button id='smallest' style={{ display: smallestState }} onClick={(e) => handleFilter(e)} className="user-menu-option"><i id='option-arrow' className="fa-solid fa-chevron-down"></i> Menor</button></li>
                                 <li><button id='remove' style={{ display: removeState }} onClick={(e) => handleFilter(e)} className="user-menu-option">Remover filtros</button></li>
                             </ul>
+                            
+                            <select  className='select-filter' name="" id="">
+                                <option value="">Maior</option>
+                                <option value="">Menor</option>
+                                <option value="">Mais recente</option>
+                                <option value="">Mais antigo</option>
+                                <option value="">A-z</option>
+                                <option value="">z-A</option>
+                            </select>
                         </div>
                     </div>
 

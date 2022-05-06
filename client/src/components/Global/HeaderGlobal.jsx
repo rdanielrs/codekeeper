@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import '../../styles/Mobile/HeaderGlobal.css';
 
 
 const HeaderHomepage = () => {
@@ -13,10 +14,11 @@ const HeaderHomepage = () => {
     const [ isBusy, setIsBusy ] = useState(true);
 
     const [ displayButton, setDisplayButton ] = useState('block')
+    const [ mobileOverlay, setMobileOverlay ] = useState('none')
 
     useEffect(() => {
         let x = document.cookie.split(";")
-        console.log(x)
+        //console.log(x)
         if (x.length > 1) {
             let y = x[0].split("=")
             let z = x[1].split("id=")
@@ -72,6 +74,21 @@ const HeaderHomepage = () => {
         navigate("/")
     }
 
+    const showMenu = () => {
+        
+        if (mobileOverlay === 'flex') {
+            setMobileOverlay('none')
+        }
+
+        if (mobileOverlay === 'none') {
+            setMobileOverlay('flex')
+        }
+    }
+
+    /*const teste = () => {
+        console.log("Teste")
+    }*/
+
     return(
         <>
             <header>
@@ -89,10 +106,27 @@ const HeaderHomepage = () => {
                                 <li><button onClick={redirectToInfo} className="header-button">Contato</button></li>
                                 <li><button style={{ display: displayButton }} onClick={logOut} className="header-button">Sair</button></li>
                             </ul>
+                            <button onClick={showMenu} className="mobile-button"><i className="fa-solid fa-bars"></i></button>
                         </div>
                     </div>
                 </div>
             </header>
+
+            <div style={{ display: mobileOverlay }} className="overlay-menu-mobile">
+                <div className="menu-mobile-container">
+                    <div className="menu-mobile-header">
+                        <button onClick={showMenu} className="mobile-button"><i className="fa-solid fa-bars"></i></button>
+                    </div>
+                    
+                    <ul className="menu-mobile">
+                        <li><button onClick={redirectHomepage} className='global-button'>Início</button></li>
+                        <li><button onClick={redirectToAccount} className='global-button'>Conta</button></li>
+                        <li><button onClick={redirectToContact} className='global-button'>Contato</button></li>
+                        <li><button onClick={redirectToInfo} className='global-button'>Sobre</button></li>
+                        <li><button onClick={logOut} className='global-button'>Sair</button></li>
+                    </ul>
+                </div>
+            </div>
         
         </>
     )
