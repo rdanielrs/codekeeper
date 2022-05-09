@@ -103,7 +103,7 @@ const HeaderHomepage = () => {
                                 <li><button onClick={redirectHomepage} className="header-button">Início</button></li>
                                 <li><button style={{display: displayButton}} onClick={redirectToAccount} className="header-button">Conta</button></li>
                                 <li><button onClick={redirectToContact} className="header-button">Contato</button></li>
-                                <li><button onClick={redirectToInfo} className="header-button">Contato</button></li>
+                                <li><button onClick={redirectToInfo} className="header-button">Sobre</button></li>
                                 <li><button style={{ display: displayButton }} onClick={logOut} className="header-button">Sair</button></li>
                             </ul>
                             <button onClick={showMenu} className="mobile-button"><i className="fa-solid fa-bars"></i></button>

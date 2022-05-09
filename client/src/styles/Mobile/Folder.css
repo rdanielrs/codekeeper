@@ -1,0 +1,20 @@
+@media (max-width: 767px) {
+    .folder-options {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .folder-options-list li {
+        display: block;
+        padding-bottom: 5px;
+    }
+
+    .folder-option {
+        width: 140px;
+    }
+
+    .folder-file-description {
+        display: none;
+    }
+}

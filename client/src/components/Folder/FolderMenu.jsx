@@ -87,7 +87,7 @@ const FolderMenu = () => {
                                     <h3>{file.file_title}</h3>
                                 </div>
 
-                                <div className="folder-file-descripion">
+                                <div className="folder-file-description">
                                     <p>{file.file_description}</p>
                                 </div>
 

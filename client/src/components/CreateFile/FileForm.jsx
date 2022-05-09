@@ -165,8 +165,23 @@ const FileForm = () => {
                         <button style={{display: displayInfo}} onClick={showInfo} id='info' className="file-button">Código</button>
                     </div>
 
+                    <div className="mobile-file-buttons">
+                        <div className="row-1">
+                            <button onClick={saveFile} className="file-button-mobile">Salvar</button>
+                            <button onClick={cancelNewFile} className="file-button-mobile">Cancelar</button>
+                            
+                        </div>
+
+                        <div className="row-2">
+                            <button onClick={clearCode} style={{ display: displayCode }} className="file-button-mobile">Apagar código</button>
+                            <button style={{display: displayCode}} id='code' onClick={showCode} className="file-button-mobile">Voltar</button>
+                            <button style={{display: displayInfo}} onClick={showInfo} id='info' className="file-button-mobile">Código</button>
+
+                        </div>
+                    </div>
+
                     <div style={{ display: displayInfo }} className="file-title-container">
-                        <input onKeyDown={(e) => nextInput(e)} id='title' className='file-title' onChange={(e) => setFileTitle(e.target.value)} placeholder='titulo' type="text" />
+                        <input onKeyDown={(e) => nextInput(e)} id='title' className='file-title' onChange={(e) => setFileTitle(e.target.value)} placeholder='Título' type="text" />
                         <textarea className='file-description' placeholder='Descrição' value={file_description} onChange={(e) => setFileDescription(e.target.value)} name="description-text" id="description" cols="30" rows="10"></textarea>
                     </div>
 
@@ -184,16 +199,6 @@ const FileForm = () => {
                 </div>
             </div>
 
-            {/*<div className="container-code-space">
-                <div className="file-code-container">
-                    <h3 onClick={testArray} className="green-title">Código</h3>
-                    {lineCounter.map((line) => (<div className='code-container' key={line}>
-                        <h3>{lineCounter.indexOf(line)}</h3>
-                        <input id={lineCounter.indexOf(line)} onKeyDown={(e) => Listen(e)} className='file-code' type="text" />
-                    </div>))}
-
-                </div>
-        </div>*/}
         </>
     )
 }

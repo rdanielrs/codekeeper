@@ -54,8 +54,6 @@ const FileMenu = () => {
         //navigate(``)
     }
 
-   
-
     return(
         <>
             <div className="container-file-menu">

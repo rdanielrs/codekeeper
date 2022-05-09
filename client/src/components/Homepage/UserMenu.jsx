@@ -107,6 +107,8 @@ const UserMenu = () => {
         }
     }
 
+    
+
     const handleFilter = (event) => {
         //console.log(event.target.id)
 
@@ -273,13 +275,17 @@ const UserMenu = () => {
                             </ul>
                             
                             <select  className='select-filter' name="" id="">
-                                <option value="">Maior</option>
-                                <option value="">Menor</option>
-                                <option value="">Mais recente</option>
-                                <option value="">Mais antigo</option>
-                                <option value="">A-z</option>
-                                <option value="">z-A</option>
+                                <option id='a-z' onClick={(e) => handleFilter(e)} value="">A-z</option>
+                                <option id='z-a' onClick={(e) => handleFilter(e)} value="">z-A</option>
+                                <option id='recent' onClick={(e) => handleFilter(e)} value="">Mais recente</option>
+                                <option id='old' onClick={(e) => handleFilter(e)} value="">Mais antigo</option>
+                                <option id='biggest' onClick={(e) => handleFilter(e)} value="">Maior</option>
+                                <option id='smallest' onClick={(e) => handleFilter(e)} value="">Menor</option>
+                                <option style={{ display: removeState }} id='remove' onClick={(e) => handleFilter(e)} value="">Remover filtros</option>
+
                             </select>
+
+                            
                         </div>
                     </div>
 

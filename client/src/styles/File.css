@@ -30,6 +30,10 @@
     margin-left: 10px;
 }
 
+.mobile-file-buttons {
+    display: none;
+}
+
 /*.file-menu-title h3 {
     color: #32c557;
 }*/
@@ -82,8 +86,11 @@
     white-space: pre;
 }
 
+
+
+
 .line-code {
-    width: 95%;
+    width: 100%;
 }
 
 .line-index {
