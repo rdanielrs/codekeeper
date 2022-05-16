@@ -8,6 +8,8 @@ const Login = () => {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
 
+    const [ errorText, setErrorText ] = useState('')
+
     const [ remember, setRemember ] = useState(false);
 
     const passwordRef = React.createRef();
@@ -29,11 +31,14 @@ const Login = () => {
             password: password            
         }).then((response) => {
             if (response.status === 200) {
-                
                 handleAuth(response.data)
-
             }
-        })   
+
+        })
+        
+        setTimeout(() => {
+            setErrorText('Usuário ou senha inválidos')
+        }, 2000)
     }
 
     const handleAuth = (data) => {
@@ -103,12 +108,15 @@ const Login = () => {
 
                         <div className="login-button-container">
                             <button onClick={handleLogin} className='login-button'>Login</button>
+                            <p>{errorText}</p>
                         </div>
 
                         <div className="remember-me-container">
                             <input onChange={(e) => setRemember(e.target.checked)} type="checkbox" name="remember-me" id="remember-me" />
                             <label htmlFor="remember-me">Lembre-se de mim</label>
                         </div>
+
+                        
 
                         <div className="no-account-container">
                             <button onClick={redirectToRegister} className="no-account">Não tenho conta</button>

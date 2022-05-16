@@ -80,10 +80,16 @@ header {
 
 .login-button-container {
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    
+}
+
+.login-butotn-container p {
+    height: 0;
 }
 
 .login-button {
